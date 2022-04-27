@@ -57,18 +57,23 @@ public class UI {
         }
     }
 
-    public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured){
+    public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
         printBoard(chessMatch.getPieces());
         System.out.println();
         printCapturePieces(captured);
         System.out.println();
         System.out.println("Turno : " + chessMatch.getTurn());
-        System.out.println("Esperando o Jogador: "
-                + chessMatch.getCurrentPlayer());
-        if(chessMatch.getCheck()){
-            System.out.println("Voce esta em XEQUE!");
+        if (!chessMatch.getCheck()) {
+            System.out.println("Esperando o Jogador: "
+                    + chessMatch.getCurrentPlayer());
+            if (chessMatch.getCheck()) {
+                System.out.println("Voce esta em XEQUE!");
+            }
         }
-
+        else {
+            System.out.println("XEQUE MATE!");
+            System.out.println("Vencedor: " + chessMatch.getCurrentPlayer());
+        }
     }
     public static void printBoard(ChessPiece[][] pieces) {
         for (int i = 0; i < pieces.length; i++) {
