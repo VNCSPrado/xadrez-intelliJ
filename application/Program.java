@@ -38,9 +38,18 @@ public class Program {
                 ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
 
                 if(capturedPiece != null){
-                captured.add(capturedPiece);
+                    captured.add(capturedPiece);
                 }
 
+                if(chessMatch.getPromoted() != null){
+                    System.out.println("Entre com a peca a ser promovida (B/N/R/Q): ");
+                    String type = sc.nextLine().toUpperCase();
+                    while(!type.equals("B") && !type.equals("N") && !type.equals("R") &&!type.equals("Q")){
+                        System.out.println("Valor invalido! Entre com a peca de pormocao (B/N/R/Q) :");
+                        type = sc.nextLine().toUpperCase();
+                    }
+                    chessMatch.replacePromotedPiece(type);
+                }
             } catch (ChessException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
